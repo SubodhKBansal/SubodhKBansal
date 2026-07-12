@@ -76,20 +76,23 @@ body{
     text-align:justify;
 
 }
-
 .welcome-box{
 
-    width:340px;
+    width:350px;
+    height:350px;          /* Same height as the director image */
 
     background:white;
 
-    border-radius:12px;
+    border-radius:15px;
 
-    padding:18px;
-
-    margin-bottom:20px;
+    padding:20px;
 
     box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;     /* Centers content vertically */
+    align-items:center;         /* Centers content horizontally */
 
     text-align:center;
 
@@ -100,7 +103,7 @@ body{
     font-size:34px;
 
     color:#003366;
-
+     margin-top:0;
     margin-bottom:5px;
 
 }
@@ -110,7 +113,7 @@ body{
     font-size:42px;
 
     color:#0056d6;
-
+     margin-top:0;
     margin-bottom:10px;
 
     font-weight:bold;
@@ -118,7 +121,7 @@ body{
 }
 
 .welcome-box p{
-
+    margin-top:0;
     font-size:18px;
 
     color:#555;
@@ -143,29 +146,46 @@ body{
 
     width:320px;
 
+    margin-left:auto;      /* Pushes it to the extreme right */
+
+    background:white;
+
     padding:20px;
 
     border-radius:15px;
 
-    background:white;
-
     box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    text-align:left;
 
 }
 
 .contact-box h3{
+
     color:#003366;
-    margin-bottom:10px;
+
+    margin-bottom:15px;
+
+    border-bottom:2px solid #0056d6;
+
+    padding-bottom:10px;
+
 }
 
 .contact-box p{
-    margin:8px 0;
+
+    margin:12px 0;
+
     font-size:16px;
+
 }
 
 .contact-box i{
+
     color:#0056d6;
-    margin-right:8px;
+
+    width:25px;
+
 }
 
 .cards{
@@ -188,7 +208,7 @@ body{
 
 .card{
 
-    width:200px;
+    width:320px;
 
     background:white;
 
