@@ -156,7 +156,9 @@ body{
 
     box-shadow:0 5px 15px rgba(0,0,0,.15);
 
-    text-align:left;
+    
+    margin-top:0;
+    align-self:flex-start;
 
 }
 
