@@ -24,12 +24,57 @@ body{
 }
 .director{
     flex:1;
-    text-align:left;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 .director img{
-    width:180px;
-    border-radius:12px;
+    width:320px;
+    height:320px;
+    object-fit:cover;
+    border-radius:15px;
+    border:4px solid #0056d6;
+    margin-bottom:20px;
+}
+.director-message{
+
+    width:320px;
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    text-align:justify;
+
+}
+
+.director-message h3{
+
+    color:#003366;
+
+    margin-bottom:10px;
+
+    border-bottom:2px solid #0056d6;
+
+    padding-bottom:8px;
+
+}
+
+.director-message p{
+
+    font-size:15px;
+
+    color:#444;
+
+    line-height:1.7;
+
+    text-align:justify;
+
 }
 .logo{
     text-align:center;
@@ -43,15 +88,21 @@ body{
 }
 
 .logo img{
-    width:260px;
+    width:350px;
     height:auto;
 }
 .contact-box{
-    flex:1;
-    background:#fff;
+
+    width:320px;
+
     padding:20px;
-    border-radius:12px;
+
+    border-radius:15px;
+
+    background:white;
+
     box-shadow:0 5px 15px rgba(0,0,0,.15);
+
 }
 
 .contact-box h3{
