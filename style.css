@@ -76,19 +76,20 @@ body{
     text-align:justify;
 
 }
+
 .welcome-box{
 
-    width:320px;          /* Same width as logo */
+    width:340px;
 
-    background:#ffffff;
+    background:white;
 
     border-radius:12px;
 
-    padding:15px;
+    padding:18px;
 
     margin-bottom:20px;
 
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
 
     text-align:center;
 
@@ -96,9 +97,9 @@ body{
 
 .welcome-box h1{
 
-    color:#003366;
+    font-size:34px;
 
-    font-size:32px;
+    color:#003366;
 
     margin-bottom:5px;
 
@@ -106,37 +107,37 @@ body{
 
 .welcome-box h2{
 
+    font-size:42px;
+
     color:#0056d6;
 
-    font-size:36px;
-
     margin-bottom:10px;
+
+    font-weight:bold;
 
 }
 
 .welcome-box p{
 
-    color:#555;
-
     font-size:18px;
+
+    color:#555;
 
     font-style:italic;
 
 }
 .logo{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.logo{
     flex:2;
     display:flex;
+    flex-direction:column;
+    align-items:center;
     justify-content:center;
 }
 
 .logo img{
     width:350px;
     height:auto;
+     margin-bottom:20px;
 }
 .contact-box{
 
