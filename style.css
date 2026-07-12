@@ -14,7 +14,10 @@ body{
     margin:auto;
     padding-top:40px;
 }
-
+.director img{
+    width:170px;
+    border-radius:10px;
+}
 .logo{
     text-align:center;
     margin-bottom:50px;
@@ -22,6 +25,28 @@ body{
 
 .logo img{
     width:220px;
+}
+.contact-box{
+    text-align:left;
+    padding:15px 20px;
+    background:#f8f8f8;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.15);
+}
+
+.contact-box h3{
+    color:#003366;
+    margin-bottom:10px;
+}
+
+.contact-box p{
+    margin:8px 0;
+    font-size:16px;
+}
+
+.contact-box i{
+    color:#0056d6;
+    margin-right:8px;
 }
 
 .cards{
