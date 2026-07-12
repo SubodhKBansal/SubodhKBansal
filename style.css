@@ -76,6 +76,53 @@ body{
     text-align:justify;
 
 }
+.welcome-box{
+
+    width:320px;          /* Same width as logo */
+
+    background:#ffffff;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+
+    text-align:center;
+
+}
+
+.welcome-box h1{
+
+    color:#003366;
+
+    font-size:32px;
+
+    margin-bottom:5px;
+
+}
+
+.welcome-box h2{
+
+    color:#0056d6;
+
+    font-size:36px;
+
+    margin-bottom:10px;
+
+}
+
+.welcome-box p{
+
+    color:#555;
+
+    font-size:18px;
+
+    font-style:italic;
+
+}
 .logo{
     text-align:center;
     margin-bottom:50px;
