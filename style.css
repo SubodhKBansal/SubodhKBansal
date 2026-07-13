@@ -78,7 +78,7 @@ body{
 }
 .welcome-box{
 
-    width:350px;
+    width:340px;
     height:320px;          /* Same height as the director image */
 
     background:white;
@@ -138,13 +138,13 @@ body{
 }
 
 .logo img{
-    width:350px;
+    width:340px;
     height:400px;
      margin-bottom:20px;
 }
 .contact-box{
 
-    width:350px;
+    width:340px;
     height:320px;  
     margin-left:auto;      /* Pushes it to the extreme right */
 
@@ -210,7 +210,7 @@ body{
 
 .card{
 
-    width:350px;
+    width:340px;
 
     background:white;
 
