@@ -30,7 +30,7 @@ body{
 }
 
 .director img{
-    width:400px;
+    width:350px;
     height:320px;
     object-fit:cover;
     border-radius:15px;
@@ -39,7 +39,7 @@ body{
 }
 .director-message{
 
-    width:400px;
+    width:350px;
 
     background:white;
 
@@ -78,7 +78,7 @@ body{
 }
 .welcome-box{
 
-    width:400px;
+    width:350px;
     height:320px;          /* Same height as the director image */
 
     background:white;
@@ -138,13 +138,13 @@ body{
 }
 
 .logo img{
-    width:400px;
+    width:350px;
     height:400px;
      margin-bottom:20px;
 }
 .contact-box{
 
-    width:400px;
+    width:350px;
     height:320px;  
     margin-left:auto;      /* Pushes it to the extreme right */
 
