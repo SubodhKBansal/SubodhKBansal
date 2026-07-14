@@ -23,10 +23,12 @@ document.getElementById("registerForm")
 
     });
 
-    const result=await response.text();
+    const result = await response.json();
 
-    alert(result);
+alert(result.message);
 
+if(result.success){
     document.getElementById("registerForm").reset();
+}
 
 });
