@@ -38,10 +38,11 @@ let pool;
 sql.connect(config)
     .then((connection) => {
         pool = connection;
-        console.log("✅ Connected to SQL Server using Windows Authentication");
+        console.log("✅ Connected to Azure SQL");
     })
     .catch((err) => {
         console.error("❌ Database Connection Failed");
+        console.error(err.message);
         console.error(err);
     });
 
