@@ -49,7 +49,7 @@ sql.connect(config)
 // Registration API
 app.post("/register", async (req, res) => {
 
-    const { fullname, mobile, email } = req.body;
+    const { fullname, mobile, email, studentClass } = req.body;
 
     try {
 
@@ -57,12 +57,11 @@ app.post("/register", async (req, res) => {
             .input("FullName", sql.NVarChar(100), fullname)
             .input("Mobile", sql.VarChar(15), mobile)
             .input("Email", sql.NVarChar(100), email)
+            .input("studentClass", sql.VarChar, studentClass)
             .query(`
-                INSERT INTO Students
-                (FullName, MobileNumber, EmailId)
-                VALUES
-                (@FullName, @Mobile, @Email)
-            `);
+        INSERT INTO Students (FullName, Mobile, Email, Class)
+        VALUES (@fullname, @mobile, @email, @studentClass)
+    `);
 
         res.json({
             success: true,

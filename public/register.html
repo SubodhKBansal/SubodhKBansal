@@ -24,51 +24,57 @@
 
     <form id="registerForm">
 
-        <div class="form-group">
+    <div class="form-group">
+        <label>Full Name</label>
+        <input
+            type="text"
+            id="fullname"
+            placeholder="Enter Full Name"
+            required>
+    </div>
 
-            <label>Full Name</label>
+    <div class="form-group">
+        <label>Mobile Number</label>
+        <input
+            type="text"
+            id="mobile"
+            placeholder="Enter Mobile Number"
+            required>
+    </div>
 
-            <input
-                type="text"
-                id="fullname"
-                placeholder="Enter Full Name"
-                required>
+    <div class="form-group">
+        <label>Email ID</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter Email Address"
+            required>
+    </div>
 
-        </div>
+    <!-- New Class/Standard Field -->
+    <div class="form-group">
+        <label>Class / Grade</label>
+        <select id="studentClass" required>
+            <option value="">-- Select Class --</option>
+            <option value="6th">6th</option>
+            <option value="7th">7th</option>
+            <option value="8th">8th</option>
+            <option value="9th">9th</option>
+            <option value="10th">10th</option>
+            <option value="11th (Medical)">11th (Medical)</option>
+            <option value="11th (Non-Medical)">11th (Non-Medical)</option>
+            <option value="12th (Medical)">12th (Medical)</option>
+            <option value="12th (Non-Medical)">12th (Non-Medical)</option>
+        </select>
+    </div>
 
-        <div class="form-group">
+    <button
+        type="submit"
+        class="btn">
+        Submit Registration
+    </button>
 
-            <label>Mobile Number</label>
-
-            <input
-                type="text"
-                id="mobile"
-                placeholder="Enter Mobile Number"
-                required>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Email ID</label>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter Email Address"
-                required>
-
-        </div>
-
-        <button
-            type="submit"
-            class="btn">
-
-            Submit Registration
-
-        </button>
-
-    </form>
+</form>
 
 </div>
 
