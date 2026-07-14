@@ -11,13 +11,24 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // SQL Server Configuration (Windows Authentication)
-const config = {
+/*const config = {
     connectionString:
         "Driver={ODBC Driver 18 for SQL Server};" +
         "Server=DESKTOP-M1NLFLM\\SBSQL;" +
         "Database=BansalClasses;" +
         "Trusted_Connection=Yes;" +
         "TrustServerCertificate=Yes;"
+};*/
+const config = {
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    server: process.env.DB_SERVER,
+    database: process.env.DB_NAME,
+
+    options: {
+        encrypt: true,
+        trustServerCertificate: false
+    }
 };
 
 let pool;
