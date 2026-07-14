@@ -1,5 +1,5 @@
 const express = require("express");
-const sql = require("mssql/msnodesqlv8");
+const sql = require("mssql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
