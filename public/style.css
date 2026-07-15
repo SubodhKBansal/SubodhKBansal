@@ -132,17 +132,15 @@ body{
 .logo{
     flex:2;
     display:flex;
-    justify-content:flex-start;  
-    align-items:center;          
-    padding:0;
-    margin:0;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
 }
 
 .logo img{
     width:100%;
-    height:auto
+    height:auto;
     display:block;
-    margin:0;
 }
 .contact-box{
 
