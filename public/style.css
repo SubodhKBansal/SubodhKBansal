@@ -30,7 +30,7 @@ body{
 }
 
 .director img{
-    width:350px;
+    width:340px;
     height:320px;
     object-fit:cover;
     border-radius:15px;
@@ -39,7 +39,7 @@ body{
 }
 .director-message{
 
-    width:350px;
+    width:340px;
 
     background:white;
 
