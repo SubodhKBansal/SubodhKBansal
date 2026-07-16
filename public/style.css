@@ -31,7 +31,7 @@ body{
 
 .director img{
     width:340px;
-    height:320px;
+    height:280px;
     object-fit:cover;
     border-radius:15px;
     border:4px solid #0056d6;
@@ -71,7 +71,7 @@ body{
 
     color:#444;
 
-    line-height:2;
+    line-height:1.5;
 
     text-align:justify;
 
@@ -79,7 +79,7 @@ body{
 .welcome-box{
 
     width:580px;
-    height:320px;          /* Same height as the director image */
+    height:280px;          /* Same height as the director image */
 
     background:white;
 
@@ -145,7 +145,7 @@ body{
 .contact-box{
 
     width:340px;
-    height:320px;  
+    height:280px;  
     margin-left:auto;      /* Pushes it to the extreme right */
 
     background:white;
