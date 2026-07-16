@@ -78,7 +78,7 @@ body{
 }
 .welcome-box{
 
-    width:680px;
+    width:640px;
     height:320px;          /* Same height as the director image */
 
     background:white;
@@ -281,5 +281,6 @@ body{
     margin-top:50px;
     min-height:180px;
     background:#0056d6;
+    text-align:center;
     border-radius:18px 18px 0 0;
 }
