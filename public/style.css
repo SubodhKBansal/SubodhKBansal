@@ -278,13 +278,8 @@ body{
 }
 
 .footer-blue{
-
     margin-top:50px;
-
-    width:100vw;
-
-    height:180px;
-
-    background:blue;
-
+    min-height:180px;
+    background:#0056d6;
+    border-radius:18px 18px 0 0;
 }
