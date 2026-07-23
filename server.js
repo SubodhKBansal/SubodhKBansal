@@ -1,7 +1,9 @@
 const express = require("express");
-const sql = require("mssql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+require("dotenv").config();
+
+const pool = require("./config/db");
 
 const app = express();
 
@@ -10,58 +12,47 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-// SQL Server Configuration (Windows Authentication)
-/*const config = {
-    connectionString:
-        "Driver={ODBC Driver 18 for SQL Server};" +
-        "Server=DESKTOP-M1NLFLM\\SBSQL;" +
-        "Database=BansalClasses;" +
-        "Trusted_Connection=Yes;" +
-        "TrustServerCertificate=Yes;"
-};*/
-const config = {
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    server: process.env.DB_SERVER,
-    database: process.env.DB_NAME,
-    port: Number(process.env.DB_PORT) || 1433,
+// ==============================
+// Test PostgreSQL Connection
+// ==============================
 
-    options: {
-        encrypt: true,
-        trustServerCertificate: false
-    }
-};
-
-let pool;
-
-// Connect to SQL Server once
-sql.connect(config)
-    .then((connection) => {
-        pool = connection;
-        console.log("✅ Connected to Azure SQL");
+pool.query("SELECT NOW()")
+    .then((result) => {
+        console.log("✅ Connected to PostgreSQL");
+        console.log(result.rows[0]);
     })
     .catch((err) => {
-        console.error("❌ Database Connection Failed");
-        console.error(err.message);
+        console.error("❌ PostgreSQL Connection Failed");
         console.error(err);
     });
 
+
+// ==============================
 // Registration API
+// ==============================
+
 app.post("/register", async (req, res) => {
 
-    const { fullname, mobile, email, studentClass } = req.body;
+    const {
+        fullname,
+        mobile,
+        email,
+        studentClass
+    } = req.body;
 
     try {
 
-        await pool.request()
-            .input("FullName", sql.NVarChar(100), fullname)
-            .input("Mobile", sql.VarChar(15), mobile)
-            .input("Email", sql.NVarChar(100), email)
-            .input("studentClass", sql.VarChar, studentClass)
-            .query(`
-        INSERT INTO Students (FullName, Mobile, Email, Class)
-        VALUES (@fullname, @mobile, @email, @studentClass)
-    `);
+        await pool.query(
+            `INSERT INTO students
+            (fullname, mobile, email, student_class)
+            VALUES ($1, $2, $3, $4)`,
+            [
+                fullname,
+                mobile,
+                email,
+                studentClass
+            ]
+        );
 
         res.json({
             success: true,
@@ -81,8 +72,11 @@ app.post("/register", async (req, res) => {
 
 });
 
+// ==============================
 // Start Server
-const PORT = 3000;
+// ==============================
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
 
