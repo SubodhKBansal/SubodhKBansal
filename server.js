@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const pool = require("./config/db");
+const sendWhatsApp = require("./utils/sendWhatsApp");
 
 const app = express();
 
@@ -58,7 +59,7 @@ app.post("/register", async (req, res) => {
                 studentClass
             ]
         );
-
+        await sendWhatsApp("91" + mobile);
         res.json({
             success: true,
             message: "Registration Successful"
