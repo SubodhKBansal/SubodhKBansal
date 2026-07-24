@@ -4,12 +4,43 @@ const cors = require("cors");
 require("dotenv").config();
 
 const pool = require("./config/db");
-const sendWhatsApp = require("./utils/sendWhatsApp");
-console.log("sendWhatsApp:", sendWhatsApp);
-console.log("typeof sendWhatsApp:", typeof sendWhatsApp);
-
+const axios = require("axios");
 const app = express();
+async function sendWhatsApp(phone) {
+    try {
 
+        const url = `https://graph.facebook.com/v23.0/${process.env.PHONE_NUMBER_ID}/messages`;
+
+        await axios.post(
+            url,
+            {
+                messaging_product: "whatsapp",
+                to: phone,
+                type: "template",
+                template: {
+                    name: "hello_world",
+                    language: {
+                        code: "en_US"
+                    }
+                }
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+
+        console.log("✅ WhatsApp message sent");
+
+    } catch (err) {
+
+        console.log("❌ WhatsApp Error");
+        console.log(err.response?.data || err.message);
+
+    }
+}
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
