@@ -5,6 +5,8 @@ require("dotenv").config();
 
 const pool = require("./config/db");
 const sendWhatsApp = require("./utils/sendWhatsApp");
+console.log("sendWhatsApp:", sendWhatsApp);
+console.log("typeof sendWhatsApp:", typeof sendWhatsApp);
 
 const app = express();
 
