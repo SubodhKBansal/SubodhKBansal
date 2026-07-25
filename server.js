@@ -280,6 +280,27 @@ app.post("/student/login", async (req, res) => {
 });
 
 // ==============================
+// Student Details API
+// ==============================
+
+app.get("/student/details", (req, res) => {
+
+    if (!req.session.student) {
+        return res.status(401).json({
+            success: false,
+            message: "Not Logged In"
+        });
+    }
+
+    res.json({
+        success: true,
+        studentName: req.session.student.fullname,
+        studentId: req.session.student.studentId
+    });
+
+});
+
+// ==============================
 // Staff Login API
 // ==============================
 

@@ -147,6 +147,24 @@ Logout
 </main>
 
 </div>
+<script>
+async function loadStudentName() {
+    try {
+        const response = await fetch("/student/details");
+        const data = await response.json();
+
+        if (data.success) {
+            document.getElementById("studentName").textContent = data.studentName;
+        } else {
+            window.location.href = "student-login.html";
+        }
+    } catch (error) {
+        console.error("Error loading student details:", error);
+    }
+}
+
+loadStudentName();
+</script>
 
 </body>
 
