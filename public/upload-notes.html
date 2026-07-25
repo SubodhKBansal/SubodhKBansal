@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Notes</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6fb;
+}
+
+.container{
+max-width:700px;
+margin:40px auto;
+background:#fff;
+padding:35px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+h2{
+color:#0b4dbd;
+margin-bottom:25px;
+text-align:center;
+}
+
+.form-group{
+margin-bottom:20px;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+}
+
+input[type=file]{
+padding:8px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#0b4dbd;
+color:#fff;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+}
+
+button:hover{
+background:#06388d;
+}
+
+.back{
+display:inline-block;
+margin-bottom:20px;
+text-decoration:none;
+color:#0b4dbd;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="staff-dashboard.html" class="back">
+<i class="fa fa-arrow-left"></i> Back to Dashboard
+</a>
+
+<h2>Upload Notes</h2>
+
+<form id="uploadNotesForm" enctype="multipart/form-data">
+
+<div class="form-group">
+<label>Title</label>
+<input type="text" name="title" required>
+</div>
+
+<div class="form-group">
+<label>Class</label>
+<select name="class" required>
+<option value="">Select Class</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+<option>10</option>
+<option>11</option>
+<option>12</option>
+<option>Engineering</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Subject</label>
+<select name="subject" required>
+<option value="">Select Subject</option>
+<option>Mathematics</option>
+<option>Science</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+<option>AI Applications</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Chapter</label>
+<input type="text" name="chapter">
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<textarea rows="4" name="description"></textarea>
+</div>
+
+<div class="form-group">
+<label>Select PDF</label>
+<input type="file" name="pdf" accept=".pdf" required>
+</div>
+
+<button type="submit">
+<i class="fa fa-upload"></i>
+Upload Notes
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+document.getElementById("uploadNotesForm").addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const formData=new FormData(e.target);
+
+const response=await fetch("/upload-note",{
+method:"POST",
+body:formData
+});
+
+const result=await response.json();
+
+alert(result.message);
+
+});
+
+</script>
+
+</body>
+</html>

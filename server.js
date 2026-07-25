@@ -8,6 +8,8 @@ const axios = require("axios");
 const app = express();
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const multer = require("multer");
+const fs = require("fs");
 async function sendWhatsApp(phone) {
     try {
 
@@ -57,9 +59,39 @@ app.use(session({
 const path = require("path");
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// ==============================
+// Multer Configuration
+// ==============================
+
+const uploadPath = path.join(__dirname, "uploads");
+
+if (!fs.existsSync(uploadPath)) {
+    fs.mkdirSync(uploadPath);
+}
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, uploadPath);
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + "-" + file.originalname);
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        if (file.mimetype !== "application/pdf") {
+            return cb(new Error("Only PDF files are allowed"));
+        }
+        cb(null, true);
+    }
 });
 // ==============================
 // Test PostgreSQL Connection
@@ -377,6 +409,43 @@ app.get("/staff/details", (req, res) => {
         facultyName: req.session.staff.facultyName,
         facultyId: req.session.staff.facultyId
     });
+
+});
+
+// ==============================
+// Upload Notes API
+// ==============================
+
+app.post("/upload-note", upload.single("pdf"), async (req, res) => {
+
+    try {
+
+        if (!req.file) {
+            return res.status(400).json({
+                success: false,
+                message: "Please select a PDF file."
+            });
+        }
+
+        console.log("Notes Uploaded");
+        console.log(req.body);
+        console.log(req.file);
+
+        res.json({
+            success: true,
+            message: "Notes uploaded successfully."
+        });
+
+    } catch (err) {
+
+        console.error(err);
+
+        res.status(500).json({
+            success: false,
+            message: "Upload failed."
+        });
+
+    }
 
 });
 // ==============================
