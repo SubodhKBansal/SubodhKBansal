@@ -80,6 +80,17 @@ pool.query("SELECT NOW()")
 // Registration API
 // ==============================
 
+async function generateFacultyId() {
+
+    const result = await pool.query(
+        "SELECT COUNT(*) FROM staff"
+    );
+
+    const nextNumber = Number(result.rows[0].count) + 1;
+
+    return "FID26" + nextNumber.toString().padStart(4, "0");
+}
+
 app.post("/register", async (req, res) => {
 
     const {
@@ -89,48 +100,119 @@ app.post("/register", async (req, res) => {
         studentClass
     } = req.body;
 
-    // Generate Student ID
-
-    const countResult = await pool.query(
-
-      "SELECT COUNT(*) FROM students"
-
-   );
-
-    const nextNumber = Number(countResult.rows[0].count) + 1;
-
-    const studentId = "BC26" + nextNumber.toString().padStart(4, "0");
-    const temporaryPassword = mobile.slice(-6);
-    const passwordHash = await bcrypt.hash(temporaryPassword, 10);
     try {
 
+        // =====================================
+        // FACULTY / STAFF REGISTRATION
+        // =====================================
+
+        if (studentClass === "Faculty (Staff)") {
+
+            const facultyId = await generateFacultyId();
+
+            const temporaryPassword = mobile.slice(-6);
+
+            const passwordHash = await bcrypt.hash(
+                temporaryPassword,
+                10
+            );
+
+            await pool.query(
+
+                `INSERT INTO staff
+                (faculty_id, password_hash, faculty_name, mobile, email, faculty_class)
+                VALUES ($1, $2, $3, $4, $5, $6)`,
+
+                [
+                    facultyId,
+                    passwordHash,
+                    fullname,
+                    mobile,
+                    email,
+                    studentClass
+                ]
+
+            );
+
+            await sendWhatsApp("91" + mobile);
+
+            return res.json({
+
+                success: true,
+
+                facultyId: facultyId,
+
+                password: temporaryPassword,
+
+                message: "Faculty Registered Successfully"
+
+            });
+
+        }
+
+        // =====================================
+        // STUDENT REGISTRATION
+        // =====================================
+
+        const countResult = await pool.query(
+
+            "SELECT COUNT(*) FROM students"
+
+        );
+
+        const nextNumber = Number(countResult.rows[0].count) + 1;
+
+        const studentId =
+            "SID26" + nextNumber.toString().padStart(4, "0");
+
+        const temporaryPassword = mobile.slice(-6);
+
+        const passwordHash = await bcrypt.hash(
+            temporaryPassword,
+            10
+        );
+
         await pool.query(
-        `INSERT INTO students
-        (student_id, password_hash, fullname, mobile, email, student_class)
-        VALUES ($1, $2, $3, $4, $5, $6)`,
-        [
-            studentId,
-            passwordHash,
-            fullname,
-            mobile,
-            email,
-            studentClass
-        ]
-    );
+
+            `INSERT INTO students
+            (student_id, password_hash, fullname, mobile, email, student_class)
+            VALUES ($1, $2, $3, $4, $5, $6)`,
+
+            [
+                studentId,
+                passwordHash,
+                fullname,
+                mobile,
+                email,
+                studentClass
+            ]
+
+        );
+
         await sendWhatsApp("91" + mobile);
-        res.json({
+
+        return res.json({
+
             success: true,
-            studentId:studentId,
-            message: "Registration Successful"
+
+            studentId: studentId,
+
+            password: temporaryPassword,
+
+            message: "Student Registered Successfully"
+
         });
 
     } catch (err) {
 
         console.error(err);
 
-        res.status(500).json({
+        return res.status(500).json({
+
             success: false,
+
             message: "Registration Failed"
+
         });
 
     }
