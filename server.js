@@ -106,7 +106,7 @@ app.post("/register", async (req, res) => {
 
         await pool.query(
         `INSERT INTO students
-        (student_id, password_hash, fullname, mobile, email, studentClass)
+        (student_id, password_hash, fullname, mobile, email, student_class)
         VALUES ($1, $2, $3, $4, $5, $6)`,
         [
             studentId,
