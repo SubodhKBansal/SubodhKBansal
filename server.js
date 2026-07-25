@@ -424,13 +424,31 @@ app.post("/upload-note", upload.single("pdf"), async (req, res) => {
         if (!req.file) {
             return res.status(400).json({
                 success: false,
-                message: "Please select a PDF file."
+                message: "Please select a PDF."
             });
         }
 
-        console.log("Notes Uploaded");
-        console.log(req.body);
-        console.log(req.file);
+        const {
+            title,
+            class: studentClass,
+            subject,
+            chapter,
+            description
+        } = req.body;
+
+        await pool.query(
+            `INSERT INTO notes
+            (title,class,subject,chapter,description,filename)
+            VALUES($1,$2,$3,$4,$5,$6)`,
+            [
+                title,
+                studentClass,
+                subject,
+                chapter,
+                description,
+                req.file.filename
+            ]
+        );
 
         res.json({
             success: true,
@@ -449,29 +467,30 @@ app.post("/upload-note", upload.single("pdf"), async (req, res) => {
     }
 
 });
-// ==============================
-// Logout API
-// ==============================
+//API to fetch all notes from the database
+app.get("/notes", async (req, res) => {
 
-app.get("/logout", (req, res) => {
+    try {
 
-    req.session.destroy((err) => {
+        const result = await pool.query(
 
-        if (err) {
+            "SELECT * FROM notes ORDER BY uploaded_at DESC"
 
-            return res.status(500).json({
-                success: false,
-                message: "Logout Failed"
-            });
+        );
 
-        }
+        res.json(result.rows);
 
-        res.json({
-            success: true,
-            message: "Logged Out Successfully"
+    }
+
+    catch(err){
+
+        console.log(err);
+
+        res.status(500).json({
+            message:"Server Error"
         });
 
-    });
+    }
 
 });
 

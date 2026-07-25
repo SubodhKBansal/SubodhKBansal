@@ -398,3 +398,79 @@ table td{
     }
 
 }
+
+/* ===========================
+   NOTES SECTION
+=========================== */
+
+#downloadNotesSection{
+
+    margin-top:40px;
+
+}
+
+#downloadNotesSection h2{
+
+    color:#003366;
+
+    margin-bottom:20px;
+
+}
+
+.note-card{
+
+    background:white;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    border-left:5px solid #0056d6;
+
+}
+
+.note-card h3{
+
+    color:#003366;
+
+    margin-bottom:10px;
+
+}
+
+.note-card p{
+
+    color:#555;
+
+    margin:6px 0;
+
+}
+
+.note-card button{
+
+    background:#0056d6;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin-top:12px;
+
+    transition:.3s;
+
+}
+
+.note-card button:hover{
+
+    background:#003d99;
+
+}
