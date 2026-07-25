@@ -159,24 +159,86 @@ Logout
 
 </div>
 <script>
+
 async function loadStudentName() {
+
     try {
+
         const response = await fetch("/student/details");
         const data = await response.json();
 
         if (data.success) {
+
             document.getElementById("studentName").textContent = data.studentName;
+
         } else {
+
             window.location.href = "student-login.html";
+
         }
+
     } catch (error) {
-        console.error("Error loading student details:", error);
+
+        console.error(error);
+
     }
+
+}
+
+async function loadNotes() {
+
+    try {
+
+        const response = await fetch("/notes");
+
+        const notes = await response.json();
+
+        const container = document.getElementById("notesContainer");
+
+        container.innerHTML = "";
+
+        if (notes.length === 0) {
+
+            container.innerHTML = "<h3>No notes uploaded yet.</h3>";
+            return;
+
+        }
+
+        notes.forEach(note => {
+
+            container.innerHTML += `
+
+            <div class="note-card">
+
+                <h3>${note.title}</h3>
+
+                <p><b>Class:</b> ${note.class}</p>
+
+                <p><b>Subject:</b> ${note.subject}</p>
+
+                <p><b>Chapter:</b> ${note.chapter}</p>
+
+                <a href="/uploads/${note.filename}" target="_blank">
+
+                    <button class="btn">Download PDF</button>
+
+                </a>
+
+            </div>
+
+            `;
+
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+    }
+
 }
 
 loadStudentName();
+loadNotes();
+
 </script>
-
-</body>
-
-</html>
