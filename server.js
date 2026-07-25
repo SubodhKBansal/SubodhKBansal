@@ -338,7 +338,26 @@ app.post("/staff/login", async (req, res) => {
     }
 
 });
+// ==============================
+// Staff Details API
+// ==============================
 
+app.get("/staff/details", (req, res) => {
+
+    if (!req.session.staff) {
+        return res.status(401).json({
+            success: false,
+            message: "Not Logged In"
+        });
+    }
+
+    res.json({
+        success: true,
+        facultyName: req.session.staff.facultyName,
+        facultyId: req.session.staff.facultyId
+    });
+
+});
 // ==============================
 // Logout API
 // ==============================

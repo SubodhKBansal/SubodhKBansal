@@ -32,7 +32,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 Welcome,
 
-<strong>Faculty</strong>
+<strong id="facultyName">Faculty</strong>
+
 
 <a href="index.html" class="logout">
 
@@ -133,7 +134,24 @@ Logout
 </main>
 
 </div>
+<script>
+async function loadFacultyName() {
+    try {
+        const response = await fetch("/faculty-details");
+        const data = await response.json();
 
+        if (data.success) {
+            document.getElementById("facultyName").textContent = data.faculty.name;
+        } else {
+            window.location.href = "faculty-login.html";
+        }
+    } catch (error) {
+        console.error("Error loading faculty details:", error);
+    }
+}
+
+loadFacultyName();
+</script>
 </body>
 
 </html>
