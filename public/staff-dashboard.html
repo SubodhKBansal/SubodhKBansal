@@ -34,7 +34,6 @@ Welcome,
 
 <strong id="facultyName">Faculty</strong>
 
-
 <a href="index.html" class="logout">
 
 <i class="fa-solid fa-right-from-bracket"></i>
@@ -137,11 +136,11 @@ Logout
 <script>
 async function loadFacultyName() {
     try {
-        const response = await fetch("/faculty-details");
+        const response = await fetch("/staff/details");
         const data = await response.json();
 
         if (data.success) {
-            document.getElementById("facultyName").textContent = data.faculty.name;
+            document.getElementById("facultyName").textContent = data.facultyName;
         } else {
             window.location.href = "faculty-login.html";
         }
