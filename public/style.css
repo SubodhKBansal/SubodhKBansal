@@ -384,11 +384,11 @@ body{
 
 .study-panel{
     margin-top:20px;
-    width:100%;
+    width:80%;
 }
 
 .accordion{
-    width:100%;
+    width:80%;
     background:#0056d6;
     color:white;
     border:none;
