@@ -241,7 +241,7 @@ body{
 
 .small-card{
 
-    width:100%;
+    width:80%;
 
 }
 
@@ -384,11 +384,11 @@ body{
 
 .study-panel{
     margin-top:20px;
-    width:80%;
+    width:100%;
 }
 
 .accordion{
-    width:80%;
+    width:100%;
     background:#0056d6;
     color:white;
     border:none;
