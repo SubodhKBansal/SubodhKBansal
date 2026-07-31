@@ -1,33 +1,136 @@
-<h2>Upload Assignment</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Assignment | Bansal's Classes</title>
 
-<form id="assignmentForm" enctype="multipart/form-data">
+    <link rel="stylesheet" href="style.css">
 
-    <label>Title</label>
-    <input type="text" name="title" required>
+    <style>
+        .upload-container{
+            max-width:700px;
+            margin:40px auto;
+            background:#fff;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
 
-    <label>Description</label>
-    <textarea name="description"></textarea>
+        .upload-container h2{
+            margin-bottom:20px;
+            color:#0d47a1;
+        }
 
-    <label>Class</label>
-    <select name="studentClass" required>
-        <option value="">Select Class</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
-    </select>
+        .upload-container label{
+            display:block;
+            margin-top:15px;
+            font-weight:bold;
+        }
 
-    <label>Subject</label>
-    <input type="text" name="subject">
+        .upload-container input,
+        .upload-container select,
+        .upload-container textarea{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            box-sizing:border-box;
+        }
 
-    <label>Choose PDF</label>
-    <input type="file" name="assignment" accept=".pdf" required>
+        .upload-container button{
+            margin-top:20px;
+            width:100%;
+            padding:12px;
+            border:none;
+            background:#1565c0;
+            color:#fff;
+            font-size:16px;
+            border-radius:5px;
+            cursor:pointer;
+        }
 
-    <button type="submit">
-        Upload Assignment
-    </button>
+        .upload-container button:hover{
+            background:#0d47a1;
+        }
 
-</form>
+        #message{
+            margin-top:20px;
+            font-weight:bold;
+            color:green;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="upload-container">
+
+    <h2>Upload Assignment</h2>
+
+    <form id="assignmentForm" enctype="multipart/form-data">
+
+        <label>Assignment Title</label>
+
+        <input
+            type="text"
+            name="title"
+            required>
+
+        <label>Description</label>
+
+        <textarea
+            name="description"
+            rows="4"></textarea>
+
+        <label>Select Class</label>
+
+        <select
+            name="studentClass"
+            required>
+
+            <option value="">Select Class</option>
+
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+
+        </select>
+
+        <label>Subject</label>
+
+        <input
+            type="text"
+            name="subject"
+            required>
+
+        <label>Select PDF</label>
+
+        <input
+            type="file"
+            name="assignment"
+            accept=".pdf"
+            required>
+
+        <button type="submit">
+
+            Upload Assignment
+
+        </button>
+
+    </form>
+
+    <p id="message"></p>
+
+</div>
+
+<script src="js/upload-assignment.js"></script>
+
+</body>
+</html>
