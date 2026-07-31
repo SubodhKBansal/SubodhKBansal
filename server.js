@@ -10,6 +10,8 @@ const bcrypt = require("bcrypt");
 const session = require("express-session");
 const multer = require("multer");
 const fs = require("fs");
+const path = require("path");
+
 async function sendWhatsApp(phone) {
     try {
 
@@ -56,7 +58,6 @@ app.use(session({
         maxAge: 24 * 60 * 60 * 1000
     }
 }));
-const path = require("path");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
