@@ -468,6 +468,38 @@ app.post("/upload-note", upload.single("pdf"), async (req, res) => {
     }
 
 });
+//API to upload assignments
+app.post("/upload-assignment", upload.single("assignment"), async (req, res) => {
+    try {
+        const { title, description, studentClass, subject } = req.body;
+
+        await pool.query(
+            `INSERT INTO assignments
+            (title, description, student_class, subject, filename)
+            VALUES ($1, $2, $3, $4, $5)`,
+            [
+                title,
+                description,
+                studentClass,
+                subject,
+                req.file.filename
+            ]
+        );
+
+        res.json({
+            success: true,
+            message: "Assignment uploaded successfully."
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Upload failed."
+        });
+    }
+});
+
 //API to fetch all notes from the database
 app.get("/notes", async (req, res) => {
 
@@ -495,6 +527,43 @@ app.get("/notes", async (req, res) => {
 
 });
 
+//API to fetch assignments from the database
+app.get("/assignments/:studentClass", async (req, res) => {
+    try {
+
+        const studentClass = req.params.studentClass;
+
+        const result = await pool.query(
+            `SELECT *
+             FROM assignments
+             WHERE student_class = $1
+             ORDER BY upload_date DESC`,
+            [studentClass]
+        );
+
+        res.json(result.rows);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false
+        });
+    }
+});
+
+//API to delete assignments from the database
+app.delete("/assignment/:id", async (req, res) => {
+
+    await pool.query(
+        "DELETE FROM assignments WHERE id=$1",
+        [req.params.id]
+    );
+
+    res.json({
+        success: true
+    });
+
+});
 // ==============================
 // Start Server
 // ==============================

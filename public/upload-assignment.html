@@ -1,0 +1,33 @@
+<h2>Upload Assignment</h2>
+
+<form id="assignmentForm" enctype="multipart/form-data">
+
+    <label>Title</label>
+    <input type="text" name="title" required>
+
+    <label>Description</label>
+    <textarea name="description"></textarea>
+
+    <label>Class</label>
+    <select name="studentClass" required>
+        <option value="">Select Class</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+    </select>
+
+    <label>Subject</label>
+    <input type="text" name="subject">
+
+    <label>Choose PDF</label>
+    <input type="file" name="assignment" accept=".pdf" required>
+
+    <button type="submit">
+        Upload Assignment
+    </button>
+
+</form>
